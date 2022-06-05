@@ -37,6 +37,7 @@ const FormularioTareas = (props) => {
 									type="text"
 									onChange={change}
 									onKeyPress={guardarNombre}
+									placeholder="Escribe la tarea"
 								/>
 							</div>
 						</div>
