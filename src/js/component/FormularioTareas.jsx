@@ -20,7 +20,6 @@ const FormularioTareas = () => {
 
 	const eliminarTarea = (index) => {
 		const auxTarea = tareas.filter((nombreTarea, auxIndex) => {
-			// [4, 9, 0].splice()
 			if (index !== auxIndex) return nombreTarea;
 		});
 		cambiarTareas(auxTarea);

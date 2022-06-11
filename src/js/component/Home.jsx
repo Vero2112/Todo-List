@@ -5,7 +5,7 @@ import "../../styles/FormularioTareas.css";
 const Home = () => {
 	return (
 		<div>
-			<FormularioTareas />
+			<FormularioTareas/>
 		</div>
 	);
 };
