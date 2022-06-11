@@ -59,7 +59,6 @@ const FormularioTareas = () => {
 					</div>
 				</div>
 			</div>
-			<div agregarTarea={agregarTarea} />
 			{tareas.map((nombreTarea, index) => {
 				return (
 					<>
