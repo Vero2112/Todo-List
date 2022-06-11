@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../../styles/FormularioTareas.css";
+
 const FormularioTareas = () => {
 	const [tareas, cambiarTareas] = useState([]);
 	const [nombreTarea, cambiarNombreTarea] = useState({
@@ -7,15 +8,11 @@ const FormularioTareas = () => {
 		done: false,
 	});
 
-	const agregarTarea = (nombreTarea) => {
-		// const auxTarea = tareas.concat(nombreTarea);
-		const auxTarea = [...tareas, nombreTarea];
+	const agregarTarea = (nombredelaTarea) => {
+		// const auxTarea = tareas.concat(nombredelaTarea);
+		const auxTarea = [...tareas, nombredelaTarea];
 		cambiarTareas(auxTarea);
-	};
-
-	const change = (e) => {
-		const value = e.target.value;
-		cambiarNombreTarea(value);
+		cambiarNombreTarea({ label: "" });
 	};
 
 	const eliminarTarea = (index) => {
@@ -28,9 +25,9 @@ const FormularioTareas = () => {
 	const guardarNombre = (e) => {
 		if (
 			(nombreTarea &&
-				nombreTarea.length > 0 &&
+				nombreTarea.label.length > 0 &&
 				e.code === "NumpadEnter") ||
-			e.code === "Enter"
+			(nombreTarea && nombreTarea.label.length > 0 && e.code === "Enter")
 		) {
 			agregarTarea(nombreTarea);
 		}
@@ -49,31 +46,34 @@ const FormularioTareas = () => {
 							<div className="d-flex justify-content-center">
 								<input
 									type="text"
-									onChange={change}
+									onChange={(e) => {
+										cambiarNombreTarea({
+											label: e.target.value,
+											done: false,
+										});
+									}}
 									onKeyPress={guardarNombre}
 									placeholder="Escribe la tarea"
+									value={nombreTarea.label}
 								/>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			{tareas.map((nombreTarea, index) => {
-				return (
-					<>
-						<div
-							className="d-flex justify-content-between border-bottom w-25 center-me "
-							key={index}>
-							{nombreTarea}
-							<button
-								className="btn btn-danger"
-								onClick={() => eliminarTarea(index)}>
-								X
-							</button>
-						</div>
-					</>
-				);
-			})}
+			{tareas.map((nombreTarea, index) => (
+				<div
+					className="d-flex justify-content-between border-bottom w-25 center-me "
+					key={index}>
+					{nombreTarea.label}
+
+					<button
+						className="btn btn-danger"
+						onClick={() => eliminarTarea(index)}>
+						X
+					</button>
+				</div>
+			))}
 		</>
 	);
 };
