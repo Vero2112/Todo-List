@@ -57,23 +57,27 @@ const FormularioTareas = () => {
 									value={nombreTarea.label}
 								/>
 							</div>
+							<div className="row d-flex justify-content-center align-items-center">
+								{tareas.map((nombreTarea, index) => (
+									<div
+										className="d-flex justify-content-between border-bottom w-75 mt-2"
+										key={index}>
+										{nombreTarea.label}
+
+										<button
+											className="btn btn-danger"
+											onClick={() =>
+												eliminarTarea(index)
+											}>
+											X
+										</button>
+									</div>
+								))}
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			{tareas.map((nombreTarea, index) => (
-				<div
-					className="d-flex justify-content-between border-bottom w-25 center-me "
-					key={index}>
-					{nombreTarea.label}
-
-					<button
-						className="btn btn-danger"
-						onClick={() => eliminarTarea(index)}>
-						X
-					</button>
-				</div>
-			))}
 		</>
 	);
 };
